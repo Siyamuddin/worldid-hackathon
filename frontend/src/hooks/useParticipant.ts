@@ -17,6 +17,18 @@ export interface ParticipantProfile {
     created_at: string;
     reward_count: number;
   }>;
+  created_events?: Array<{
+    id: number;
+    name: string;
+    description: string | null;
+    start_date: string | null;
+    end_date: string | null;
+    is_active: boolean;
+    is_published: boolean;
+    created_at: string;
+    reward_count: number;
+  }>;
+
 }
 
 export function useParticipantProfile() {

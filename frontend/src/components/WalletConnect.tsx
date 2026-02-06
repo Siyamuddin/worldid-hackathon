@@ -1,6 +1,14 @@
 import { useWallet } from '../hooks/useWallet';
 import { useEffect, useState } from 'react';
 
+declare global {
+  interface Window {
+    ethereum?: any;
+    web3?: any;
+  }
+}
+
+
 export function WalletConnect() {
   const { address, isConnected, connectWallet, disconnect, isConnecting, error } = useWallet();
   const [hasWallet, setHasWallet] = useState(false);

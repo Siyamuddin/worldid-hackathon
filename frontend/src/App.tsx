@@ -47,6 +47,7 @@ function App() {
       </WagmiProvider>
     </GoogleOAuthProvider>
   );
+
 }
 
 export default App;
