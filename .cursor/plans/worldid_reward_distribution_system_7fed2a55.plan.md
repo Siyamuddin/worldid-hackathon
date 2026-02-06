@@ -4,62 +4,62 @@ overview: Build an event-based reward distribution system where organizers creat
 todos:
   - id: setup-backend
     content: Set up Python FastAPI backend framework, configure database connection (PostgreSQL with SQLAlchemy), and set up project structure
-    status: pending
+    status: completed
   - id: database-schema
     content: Create database schema with organizers, events, participants (WorldID→Wallet mapping), event_participants, rewards, and claims tables with proper constraints
-    status: pending
+    status: completed
     dependencies:
       - setup-backend
   - id: worldid-integration
     content: Integrate WorldID SDK, create verification service to verify proofs on backend, and implement nullifier checking
-    status: pending
+    status: completed
     dependencies:
       - setup-backend
   - id: event-join-api
     content: Implement event joining endpoint that verifies WorldID proof, enforces 1:1 WorldID→Wallet mapping, and registers participant for event
-    status: pending
+    status: completed
     dependencies:
       - database-schema
       - worldid-integration
   - id: blockchain-service
     content: Create blockchain service for ERC-20 token transfers and ERC-721/ERC-1155 NFT transfers on Ethereum, with transaction monitoring
-    status: pending
+    status: completed
     dependencies:
       - setup-backend
   - id: reward-claim-api
     content: Implement reward claiming endpoint that verifies WorldID proof per claim, checks duplicate claims per event, and executes blockchain transfers
-    status: pending
+    status: completed
     dependencies:
       - event-join-api
       - blockchain-service
   - id: organizer-api
     content: Create organizer endpoints for creating/managing events, setting rewards, viewing participants and claims
-    status: pending
+    status: completed
     dependencies:
       - database-schema
   - id: frontend-setup
     content: Set up React frontend with TypeScript, configure wallet connection (wagmi/ethers.js), and set up API client
-    status: pending
+    status: completed
   - id: worldid-widget
     content: Integrate WorldID widget in frontend for user verification flow
-    status: pending
+    status: completed
     dependencies:
       - frontend-setup
   - id: participant-ui
     content: Build participant interface for browsing events, joining events, claiming rewards with wallet connection, WorldID verification, and transaction status tracking
-    status: pending
+    status: completed
     dependencies:
       - worldid-widget
       - reward-claim-api
   - id: organizer-dashboard
     content: Create organizer dashboard for creating/managing events, setting rewards, viewing participants and claims statistics
-    status: pending
+    status: completed
     dependencies:
       - organizer-api
       - frontend-setup
   - id: security-testing
     content: Add rate limiting, input validation, error handling, logging, and write tests for duplicate prevention logic
-    status: pending
+    status: completed
     dependencies:
       - reward-claim-api
       - organizer-api
