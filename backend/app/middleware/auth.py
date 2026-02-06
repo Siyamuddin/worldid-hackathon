@@ -27,6 +27,11 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 def get_password_hash(password: str) -> str:
     """Hash a password"""
+    # Bcrypt has a 72-byte limit, so we need to truncate if necessary
+    password_bytes = password.encode('utf-8')
+    if len(password_bytes) > 72:
+        # Truncate to 72 bytes (bcrypt limit)
+        password = password_bytes[:72].decode('utf-8', errors='ignore')
     return pwd_context.hash(password)
 
 
@@ -46,10 +51,10 @@ def verify_token(token: str, credentials_exception):
     """Verify a JWT token"""
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
-        if email is None:
+        world_id_hash: str = payload.get("sub")
+        if world_id_hash is None:
             raise credentials_exception
-        return email
+        return world_id_hash
     except JWTError:
         raise credentials_exception
 
@@ -64,8 +69,8 @@ def get_current_organizer(
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    email = verify_token(token, credentials_exception)
-    organizer = db.query(Organizer).filter(Organizer.email == email).first()
+    world_id_hash = verify_token(token, credentials_exception)
+    organizer = db.query(Organizer).filter(Organizer.world_id_hash == world_id_hash).first()
     if organizer is None:
         raise credentials_exception
     if not organizer.is_active:

@@ -25,8 +25,10 @@ export function RewardClaim({ eventId }: RewardClaimProps) {
       const result = await claimRewards.mutateAsync({
         eventId,
         worldIdProof,
+        walletAddress: address,
       });
       alert(`Successfully claimed rewards! Transaction: ${result[0]?.transaction_hash || 'Pending'}`);
+      setWorldIdProof(null); // Reset to allow re-verification if needed
     } catch (error: any) {
       alert(`Error: ${error.response?.data?.detail || error.message}`);
     }
@@ -42,22 +44,36 @@ export function RewardClaim({ eventId }: RewardClaimProps) {
 
   return (
     <div className="space-y-4">
+      <div className="p-4 bg-gray-50 rounded-lg">
+        <p className="text-sm font-medium mb-1">Your Wallet:</p>
+        <p className="text-xs text-gray-600 font-mono break-all">{address}</p>
+      </div>
+      
       <div>
-        <p className="mb-2">Wallet: {address}</p>
+        <p className="text-sm text-gray-700 mb-2">
+          Verify with WorldID to claim your rewards. A fresh proof is required for each claim:
+        </p>
         <WorldIDVerification
           onSuccess={handleWorldIdSuccess}
           signal={address}
           disabled={!isConnected}
+          showPrivacyInfo={true}
         />
       </div>
+      
       {worldIdProof && (
-        <button
-          onClick={handleClaim}
-          disabled={claimRewards.isPending}
-          className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50"
-        >
-          {claimRewards.isPending ? 'Claiming...' : 'Claim Rewards'}
-        </button>
+        <div className="space-y-2">
+          <button
+            onClick={handleClaim}
+            disabled={claimRewards.isPending}
+            className="w-full px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+          >
+            {claimRewards.isPending ? 'Processing Claim...' : 'Claim Rewards'}
+          </button>
+          <p className="text-xs text-gray-600 text-center">
+            You can only claim once per event. Duplicate claims are prevented automatically.
+          </p>
+        </div>
       )}
     </div>
   );

@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Request
 from sqlalchemy.orm import Session
+from sqlalchemy import text
+from sqlalchemy.exc import OperationalError, ProgrammingError
 from typing import List
 from app.config.database import get_db
 from app.middleware.rate_limit import rate_limit
@@ -8,9 +10,10 @@ from app.models.participant import Participant
 from app.models.event_participant import EventParticipant
 from app.models.reward import Reward
 from app.models.claim import Claim, ClaimStatus
-from app.schemas.participant import ParticipantJoinEvent, ParticipantResponse
+from app.schemas.participant import ParticipantResponse
 from app.schemas.event import EventListResponse
 from app.schemas.claim import ClaimRequest, ClaimResponse
+from app.middleware.participant_auth import get_current_participant
 from app.services.worldid_service import WorldIDService
 from app.services.wallet_service import WalletService
 from app.services.blockchain_service import BlockchainService
@@ -20,37 +23,149 @@ from decimal import Decimal
 router = APIRouter()
 
 
-@router.get("", response_model=List[EventListResponse])
+@router.get("/public/events", response_model=List[EventListResponse])
 async def browse_events(db: Session = Depends(get_db)):
-    """Browse all available active events"""
-    events = db.query(Event).filter(Event.is_active == True).all()
-    
-    result = []
-    for event in events:
-        reward_count = db.query(Reward).filter(Reward.event_id == event.id).count()
-        result.append({
-            "id": event.id,
-            "name": event.name,
-            "description": event.description,
-            "start_date": event.start_date,
-            "end_date": event.end_date,
-            "is_active": event.is_active,
-            "created_at": event.created_at,
-            "reward_count": reward_count
-        })
-    
-    return result
+    """Browse all available published and active events (public, no auth required)"""
+    try:
+        # First check if participant_id column exists
+        try:
+            result = db.execute(text("""
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name='events' AND column_name='participant_id'
+            """)).first()
+            
+            if not result:
+                # Column doesn't exist, use raw SQL to query without participant_id
+                logger.warning("participant_id column does not exist. Using raw SQL query.")
+                events_data = db.execute(text("""
+                    SELECT id, name, description, start_date, end_date, is_active, is_published, created_at
+                    FROM events
+                    WHERE is_active = true AND is_published = true
+                """)).fetchall()
+                
+                result_list = []
+                for row in events_data:
+                    reward_count = db.query(Reward).filter(Reward.event_id == row[0]).count()
+                    result_list.append({
+                        "id": row[0],
+                        "name": row[1],
+                        "description": row[2],
+                        "start_date": row[3],
+                        "end_date": row[4],
+                        "is_active": row[5],
+                        "is_published": row[6],
+                        "created_at": row[7],
+                        "reward_count": reward_count
+                    })
+                return result_list
+        except (OperationalError, ProgrammingError) as schema_error:
+            logger.warning(f"Schema check failed: {str(schema_error)}. Attempting raw SQL query.")
+            # If schema check fails, try raw SQL query
+            try:
+                events_data = db.execute(text("""
+                    SELECT id, name, description, start_date, end_date, is_active, is_published, created_at
+                    FROM events
+                    WHERE is_active = true AND is_published = true
+                """)).fetchall()
+                
+                result_list = []
+                for row in events_data:
+                    reward_count = db.query(Reward).filter(Reward.event_id == row[0]).count()
+                    result_list.append({
+                        "id": row[0],
+                        "name": row[1],
+                        "description": row[2],
+                        "start_date": row[3],
+                        "end_date": row[4],
+                        "is_active": row[5],
+                        "is_published": row[6],
+                        "created_at": row[7],
+                        "reward_count": reward_count
+                    })
+                return result_list
+            except Exception as raw_sql_error:
+                logger.error(f"Raw SQL query also failed: {str(raw_sql_error)}")
+                return []
+        
+        # Normal query path - participant_id column exists
+        events = db.query(Event).filter(
+            Event.is_active == True,
+            Event.is_published == True
+        ).all()
+        
+        result = []
+        for event in events:
+            # Skip events without participant_id (migration not complete)
+            if not hasattr(event, 'participant_id') or event.participant_id is None:
+                continue
+                
+            reward_count = db.query(Reward).filter(Reward.event_id == event.id).count()
+            result.append({
+                "id": event.id,
+                "name": event.name,
+                "description": event.description,
+                "start_date": event.start_date,
+                "end_date": event.end_date,
+                "is_active": event.is_active,
+                "is_published": event.is_published,
+                "created_at": event.created_at,
+                "reward_count": reward_count
+            })
+        
+        return result
+    except (OperationalError, ProgrammingError) as db_error:
+        error_msg = str(db_error).lower()
+        if "participant_id" in error_msg or "column" in error_msg or "does not exist" in error_msg:
+            logger.warning(f"Database schema mismatch detected: {str(db_error)}. Attempting fallback query.")
+            try:
+                # Fallback to raw SQL
+                events_data = db.execute(text("""
+                    SELECT id, name, description, start_date, end_date, is_active, is_published, created_at
+                    FROM events
+                    WHERE is_active = true AND is_published = true
+                """)).fetchall()
+                
+                result_list = []
+                for row in events_data:
+                    reward_count = db.query(Reward).filter(Reward.event_id == row[0]).count()
+                    result_list.append({
+                        "id": row[0],
+                        "name": row[1],
+                        "description": row[2],
+                        "start_date": row[3],
+                        "end_date": row[4],
+                        "is_active": row[5],
+                        "is_published": row[6],
+                        "created_at": row[7],
+                        "reward_count": reward_count
+                    })
+                return result_list
+            except Exception as fallback_error:
+                logger.error(f"Fallback query failed: {str(fallback_error)}")
+                return []
+        else:
+            logger.error(f"Database error browsing events: {str(db_error)}")
+            return []
+    except Exception as e:
+        logger.error(f"Unexpected error browsing events: {str(e)}", exc_info=True)
+        # Return empty list on error to prevent 500
+        return []
 
 
-@router.get("/{event_id}", response_model=EventListResponse)
+@router.get("/public/events/{event_id}", response_model=EventListResponse)
 async def get_event_details(event_id: int, db: Session = Depends(get_db)):
-    """Get event details"""
-    event = db.query(Event).filter(Event.id == event_id, Event.is_active == True).first()
+    """Get event details (only published events, public, no auth required)"""
+    event = db.query(Event).filter(
+        Event.id == event_id,
+        Event.is_active == True,
+        Event.is_published == True
+    ).first()
     
     if not event:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Event not found"
+            detail="Event not found or not published"
         )
     
     reward_count = db.query(Reward).filter(Reward.event_id == event.id).count()
@@ -62,128 +177,89 @@ async def get_event_details(event_id: int, db: Session = Depends(get_db)):
         "start_date": event.start_date,
         "end_date": event.end_date,
         "is_active": event.is_active,
+        "is_published": event.is_published,
         "created_at": event.created_at,
         "reward_count": reward_count
     }
 
 
-@router.post("/{event_id}/join", response_model=dict)
+@router.post("/events/{event_id}/join", response_model=dict)
 async def join_event(
     event_id: int,
-    join_data: ParticipantJoinEvent,
-    request: Request,
+    current_participant: Participant = Depends(get_current_participant),
     db: Session = Depends(get_db),
     _: int = Depends(rate_limit(max_requests=5, window_seconds=60))
 ):
-    """Join an event with WorldID verification"""
-    # Verify event exists and is active
-    event = db.query(Event).filter(Event.id == event_id, Event.is_active == True).first()
+    """Join an event (Google auth required, no WorldID needed)"""
+    # Verify event exists, is active, and is published
+    event = db.query(Event).filter(
+        Event.id == event_id,
+        Event.is_active == True,
+        Event.is_published == True
+    ).first()
     if not event:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Event not found or inactive"
+            detail="Event not found, inactive, or not published"
         )
-    
-    # Validate wallet address
-    wallet_address = WalletService.to_checksum_address(join_data.wallet_address)
-    if not wallet_address:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid wallet address"
-        )
-    
-    # Verify WorldID proof
-    worldid_service = WorldIDService()
-    verification_result = worldid_service.verify_proof(
-        join_data.world_id_proof,
-        signal=wallet_address
-    )
-    
-    if not verification_result["success"]:
-        logger.warning(f"WorldID verification failed for event {event_id}: {verification_result['message']}")
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"WorldID verification failed: {verification_result['message']}"
-        )
-    
-    logger.info(f"WorldID verification successful for event {event_id}")
-    
-    # Get or create nullifier hash
-    nullifier_hash = worldid_service.get_nullifier_hash(join_data.world_id_proof)
-    if not nullifier_hash:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid WorldID proof: missing nullifier hash"
-        )
-    
-    world_id_hash = worldid_service.hash_world_id(nullifier_hash)
-    
-    # Check if participant exists
-    participant = db.query(Participant).filter(
-        Participant.world_id_hash == world_id_hash
-    ).first()
-    
-    if participant:
-        # Participant exists, verify wallet matches
-        if participant.wallet_address.lower() != wallet_address.lower():
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="WorldID already linked to a different wallet address"
-            )
-    else:
-        # Create new participant
-        participant = Participant(
-            world_id_hash=world_id_hash,
-            wallet_address=wallet_address
-        )
-        db.add(participant)
-        db.flush()
     
     # Check if already joined this event
     existing_join = db.query(EventParticipant).filter(
         EventParticipant.event_id == event_id,
-        EventParticipant.participant_id == participant.id
+        EventParticipant.participant_id == current_participant.id
     ).first()
     
     if existing_join:
         return {
             "message": "Already joined this event",
             "event_id": event_id,
-            "participant_id": participant.id
+            "participant_id": current_participant.id
         }
     
     # Register participant for event
     event_participant = EventParticipant(
         event_id=event_id,
-        participant_id=participant.id
+        participant_id=current_participant.id
     )
     db.add(event_participant)
     db.commit()
     
-    logger.info(f"Participant {participant.id} joined event {event_id}")
+    logger.info(f"Participant {current_participant.id} (Google ID: {current_participant.google_id}) joined event {event_id}")
     
     return {
         "message": "Successfully joined event",
         "event_id": event_id,
-        "participant_id": participant.id
+        "participant_id": current_participant.id
     }
 
 
-@router.post("/{event_id}/claim", response_model=List[ClaimResponse])
+@router.post("/events/{event_id}/claim", response_model=List[ClaimResponse])
 async def claim_rewards(
     event_id: int,
     claim_data: ClaimRequest,
-    request: Request,
+    current_participant: Participant = Depends(get_current_participant),
     db: Session = Depends(get_db),
     _: int = Depends(rate_limit(max_requests=3, window_seconds=60))
 ):
-    """Claim rewards from an event"""
-    # Verify event exists and is active
-    event = db.query(Event).filter(Event.id == event_id, Event.is_active == True).first()
+    """Claim rewards from an event (Google auth + WorldID + wallet required)"""
+    # Verify event exists, is active, and is published
+    event = db.query(Event).filter(
+        Event.id == event_id,
+        Event.is_active == True,
+        Event.is_published == True
+    ).first()
     if not event:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Event not found or inactive"
+            detail="Event not found, inactive, or not published"
+        )
+    
+    # Validate wallet address
+    wallet_address = WalletService.to_checksum_address(claim_data.wallet_address)
+    if not wallet_address:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid wallet address"
         )
     
     # Verify WorldID proof
@@ -199,7 +275,7 @@ async def claim_rewards(
     
     logger.info(f"WorldID verification successful for claim on event {event_id}")
     
-    # Get nullifier hash and find participant
+    # Verify WorldID matches participant's WorldID
     nullifier_hash = worldid_service.get_nullifier_hash(claim_data.world_id_proof)
     if not nullifier_hash:
         raise HTTPException(
@@ -208,20 +284,23 @@ async def claim_rewards(
         )
     
     world_id_hash = worldid_service.hash_world_id(nullifier_hash)
-    participant = db.query(Participant).filter(
-        Participant.world_id_hash == world_id_hash
-    ).first()
     
-    if not participant:
+    # Update participant's world_id_hash if not set, or verify it matches
+    if not current_participant.world_id_hash:
+        # First time setting WorldID - link it to this participant
+        current_participant.world_id_hash = world_id_hash
+        db.commit()
+        db.refresh(current_participant)
+    elif current_participant.world_id_hash != world_id_hash:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Participant not found. Please join the event first."
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="WorldID mismatch. This proof does not match your account."
         )
     
     # Check if participant joined the event
     event_participant = db.query(EventParticipant).filter(
         EventParticipant.event_id == event_id,
-        EventParticipant.participant_id == participant.id
+        EventParticipant.participant_id == current_participant.id
     ).first()
     
     if not event_participant:
@@ -229,6 +308,19 @@ async def claim_rewards(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="You must join the event before claiming rewards"
         )
+    
+    # Update or verify wallet address
+    if current_participant.wallet_address:
+        if current_participant.wallet_address.lower() != wallet_address.lower():
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Wallet address mismatch. This account is already linked to a different wallet."
+            )
+    else:
+        # Set wallet address for first time
+        current_participant.wallet_address = wallet_address
+        db.commit()
+        db.refresh(current_participant)
     
     # Get all rewards for this event
     rewards = db.query(Reward).filter(Reward.event_id == event_id).all()
@@ -242,7 +334,7 @@ async def claim_rewards(
     # Check if already claimed
     existing_claims = db.query(Claim).filter(
         Claim.event_id == event_id,
-        Claim.participant_id == participant.id
+        Claim.participant_id == current_participant.id
     ).all()
     
     if existing_claims:
@@ -262,7 +354,7 @@ async def claim_rewards(
         # Check if claim already exists for this reward
         existing_claim = db.query(Claim).filter(
             Claim.event_id == event_id,
-            Claim.participant_id == participant.id,
+            Claim.participant_id == current_participant.id,
             Claim.reward_id == reward.id
         ).first()
         
@@ -273,7 +365,7 @@ async def claim_rewards(
         # Create claim record
         claim = Claim(
             event_id=event_id,
-            participant_id=participant.id,
+            participant_id=current_participant.id,
             reward_id=reward.id,
             status=ClaimStatus.PENDING
         )
@@ -290,19 +382,19 @@ async def claim_rewards(
                 amount_wei = int(Decimal(str(reward.amount)) * Decimal(10**18))
                 result = blockchain_service.send_erc20_token(
                     reward.token_address,
-                    participant.wallet_address,
+                    wallet_address,  # Use validated wallet address
                     amount_wei
                 )
             elif reward.reward_type == RewardType.ERC721:
                 result = blockchain_service.send_erc721_nft(
                     reward.token_address,
-                    participant.wallet_address,
+                    wallet_address,  # Use validated wallet address
                     reward.token_id
                 )
             elif reward.reward_type == RewardType.ERC1155:
                 result = blockchain_service.send_erc1155_nft(
                     reward.token_address,
-                    participant.wallet_address,
+                    wallet_address,  # Use validated wallet address
                     reward.token_id
                 )
             else:
@@ -330,48 +422,102 @@ async def claim_rewards(
     return created_claims
 
 
-@router.get("/profile/{wallet_address}", response_model=ParticipantResponse)
-async def get_participant_profile(
-    wallet_address: str,
+@router.get("/profile/me", response_model=ParticipantResponse)
+async def get_current_participant_profile(
+    current_participant: Participant = Depends(get_current_participant),
     db: Session = Depends(get_db)
 ):
-    """Get participant profile by wallet address"""
-    wallet_address = WalletService.to_checksum_address(wallet_address)
-    if not wallet_address:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid wallet address"
-        )
-    
-    participant = db.query(Participant).filter(
-        Participant.wallet_address == wallet_address
-    ).first()
-    
-    if not participant:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Participant not found"
-        )
-    
-    # Get joined events
-    joined_events = []
-    for ep in participant.event_participants:
-        event = ep.event
-        reward_count = db.query(Reward).filter(Reward.event_id == event.id).count()
-        joined_events.append({
-            "id": event.id,
-            "name": event.name,
-            "description": event.description,
-            "start_date": event.start_date,
-            "end_date": event.end_date,
-            "is_active": event.is_active,
-            "created_at": event.created_at,
-            "reward_count": reward_count
-        })
-    
-    return {
-        "id": participant.id,
-        "wallet_address": participant.wallet_address,
-        "created_at": participant.created_at,
-        "joined_events": joined_events
-    }
+    """Get current participant profile (requires Google authentication)"""
+    try:
+        # Check if participant_id column exists
+        result = db.execute(text("""
+            SELECT column_name 
+            FROM information_schema.columns 
+            WHERE table_name='events' AND column_name='participant_id'
+        """)).first()
+        
+        if not result:
+            # Column doesn't exist, return profile without events
+            logger.warning("participant_id column does not exist. Returning profile without events.")
+            return {
+                "id": current_participant.id,
+                "google_id": current_participant.google_id,
+                "wallet_address": current_participant.wallet_address,
+                "created_at": current_participant.created_at,
+                "joined_events": [],
+                "created_events": []
+            }
+        
+        # Get joined events
+        joined_events = []
+        try:
+            for ep in current_participant.event_participants:
+                event = ep.event
+                reward_count = db.query(Reward).filter(Reward.event_id == event.id).count()
+                joined_events.append({
+                    "id": event.id,
+                    "name": event.name,
+                    "description": event.description,
+                    "start_date": event.start_date,
+                    "end_date": event.end_date,
+                    "is_active": event.is_active,
+                    "is_published": event.is_published,
+                    "created_at": event.created_at,
+                    "reward_count": reward_count
+                })
+        except (OperationalError, ProgrammingError) as e:
+            logger.warning(f"Error loading joined events: {str(e)}")
+            joined_events = []
+        
+        # Get created events
+        created_events = []
+        try:
+            for event in current_participant.created_events:
+                reward_count = db.query(Reward).filter(Reward.event_id == event.id).count()
+                created_events.append({
+                    "id": event.id,
+                    "name": event.name,
+                    "description": event.description,
+                    "start_date": event.start_date,
+                    "end_date": event.end_date,
+                    "is_active": event.is_active,
+                    "is_published": event.is_published,
+                    "created_at": event.created_at,
+                    "reward_count": reward_count
+                })
+        except (OperationalError, ProgrammingError) as e:
+            logger.warning(f"Error loading created events: {str(e)}")
+            created_events = []
+        
+        return {
+            "id": current_participant.id,
+            "google_id": current_participant.google_id,
+            "wallet_address": current_participant.wallet_address,
+            "created_at": current_participant.created_at,
+            "joined_events": joined_events,
+            "created_events": created_events
+        }
+    except (OperationalError, ProgrammingError) as e:
+        error_msg = str(e).lower()
+        if "participant_id" in error_msg or "column" in error_msg or "does not exist" in error_msg:
+            logger.warning(f"Schema mismatch: {str(e)}. Returning profile without events.")
+            return {
+                "id": current_participant.id,
+                "google_id": current_participant.google_id,
+                "wallet_address": current_participant.wallet_address,
+                "created_at": current_participant.created_at,
+                "joined_events": [],
+                "created_events": []
+            }
+        raise
+    except Exception as e:
+        logger.error(f"Unexpected error getting participant profile: {str(e)}", exc_info=True)
+        # Return basic profile info even on error
+        return {
+            "id": current_participant.id,
+            "google_id": current_participant.google_id,
+            "wallet_address": current_participant.wallet_address,
+            "created_at": current_participant.created_at,
+            "joined_events": [],
+            "created_events": []
+        }

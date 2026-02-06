@@ -2,6 +2,18 @@
 
 An event-based reward distribution system that uses WorldID to prevent duplicate claims, ensuring one person (verified by WorldID) can only claim rewards once per event, even if they try using multiple wallets.
 
+**Built for World Build Korea 2026 Hackathon**
+
+## 📚 Documentation
+
+- **[PROBLEM.md](PROBLEM.md)** - Problem statement and real-world use cases
+- **[PRIVACY.md](PRIVACY.md)** - Privacy-by-design documentation
+- **[SUBMISSION.md](SUBMISSION.md)** - Hackathon submission checklist
+- **[docs/why-worldid.md](docs/why-worldid.md)** - Why WorldID is essential
+- **[docs/anti-abuse.md](docs/anti-abuse.md)** - Anti-abuse measures documentation
+- **[docs/privacy-flow.md](docs/privacy-flow.md)** - Privacy flow visualization
+- **[docs/security-architecture.md](docs/security-architecture.md)** - Security architecture
+
 ## Features
 
 - **Event-Based System**: Organizers create events with rewards, participants join and claim
@@ -156,6 +168,17 @@ npm run dev
 4. **Rate Limiting**: Prevents spam/abuse on claim endpoints
 5. **Input Validation**: Validates all wallet addresses and WorldID proofs
 6. **Transaction Safety**: Uses nonces and proper gas estimation
+
+See [docs/anti-abuse.md](docs/anti-abuse.md) for detailed anti-abuse measures.
+
+## Privacy Features
+
+- **Zero-Knowledge Proofs**: Verify uniqueness without revealing identity
+- **Data Minimization**: Only store nullifier hash (anonymous) and wallet address (public)
+- **No Personal Information**: Never collect name, email, phone, or identity data
+- **Privacy-by-Design**: Built into the system architecture
+
+See [PRIVACY.md](PRIVACY.md) for comprehensive privacy documentation.
 
 ## Database Schema
 

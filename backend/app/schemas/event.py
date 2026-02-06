@@ -18,16 +18,18 @@ class EventUpdate(BaseModel):
     start_date: Optional[datetime] = None
     end_date: Optional[datetime] = None
     is_active: Optional[bool] = None
+    is_published: Optional[bool] = None
 
 
 class EventResponse(BaseModel):
     id: int
-    organizer_id: int
+    participant_id: int
     name: str
     description: Optional[str]
     start_date: Optional[datetime]
     end_date: Optional[datetime]
     is_active: bool
+    is_published: bool
     created_at: datetime
     rewards: List[RewardResponse] = []
 
@@ -42,6 +44,7 @@ class EventListResponse(BaseModel):
     start_date: Optional[datetime]
     end_date: Optional[datetime]
     is_active: bool
+    is_published: bool
     created_at: datetime
     reward_count: int = 0
 

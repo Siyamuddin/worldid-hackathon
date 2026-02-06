@@ -1,0 +1,8 @@
+
+{
+  "name": "Inhuman Protocol",
+  "description": "A high-security biometric authentication portal designed for human-only access in a post-AI world.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
