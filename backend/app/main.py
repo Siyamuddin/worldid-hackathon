@@ -30,7 +30,7 @@ if domain:
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Nginx handles CORS, so we allow all for simplicity
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
