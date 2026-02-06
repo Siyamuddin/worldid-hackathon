@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"backend/HumanReward.sol": "IRewardToken"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"backend/HumanReward.sol": {
+			"keccak256": "0x1cf8494fcbdac249d22cd774cf6c9fadc04266f6a93091d23eaac70433bd33c8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://909a63903abdd065fe30d16ab9141be02f68787aa6d5cab125f334b379087ec6",
+				"dweb:/ipfs/Qmc8njZWBeDugeBkFF6Gu8g5XRAv65kXA5W28Q88USQSTd"
+			]
+		}
+	},
+	"version": 1
+}
