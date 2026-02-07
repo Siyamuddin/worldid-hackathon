@@ -1,216 +1,196 @@
-# WorldID Reward Distribution System
+# 🌍 InHuman - Proof-of-Human Token Distribution for Real-World Events
 
-An event-based reward distribution system that uses WorldID to prevent duplicate claims, ensuring one person (verified by WorldID) can only claim rewards once per event, even if they try using multiple wallets.
+## 🧠 Overview
 
-**Built for World Build Korea 2026 Hackathon**
+**InHuman** is a Web3 system that ensures **only real
+humans** can claim event rewards --- not bots, scripts, or Sybil
+attackers.
 
-## 📚 Documentation
+We combine:
 
-- **[PROBLEM.md](PROBLEM.md)** - Problem statement and real-world use cases
-- **[PRIVACY.md](PRIVACY.md)** - Privacy-by-design documentation
-- **[SUBMISSION.md](SUBMISSION.md)** - Hackathon submission checklist
-- **[docs/why-worldid.md](docs/why-worldid.md)** - Why WorldID is essential
-- **[docs/anti-abuse.md](docs/anti-abuse.md)** - Anti-abuse measures documentation
-- **[docs/privacy-flow.md](docs/privacy-flow.md)** - Privacy flow visualization
-- **[docs/security-architecture.md](docs/security-architecture.md)** - Security architecture
+-   🧬 **World ID** → Proof of personhood\
+-   🪙 **ERC-20 Reward Token** → On-chain incentive\
+-   🔐 **Smart Contracts** → Trustless, automated reward distribution
 
-## Features
+This allows event organizers to distribute tokens fairly, securely, and
+transparently.
 
-- **Event-Based System**: Organizers create events with rewards, participants join and claim
-- **WorldID Verification**: Prevents duplicate claims using WorldID's uniqueness verification
-- **Blockchain Integration**: Supports ERC-20 tokens, ERC-721, and ERC-1155 NFTs on Ethereum
-- **Secure**: Rate limiting, input validation, and comprehensive error handling
+------------------------------------------------------------------------
 
-## Tech Stack
+## ❗ Problem
 
-### Backend
-- Python 3.11+
-- FastAPI
-- PostgreSQL with SQLAlchemy
-- Alembic for migrations
-- Web3.py for blockchain interactions
+Web3 reward systems are broken.
 
-### Frontend
-- React 18+ with TypeScript
-- Vite
-- wagmi + viem for wallet connection
-- WorldID IDKit for verification
-- Tailwind CSS
+  Issue                  What Happens
+  ---------------------- ----------------------------------------------
+  🤖 Sybil attacks       One person claims rewards multiple times
+  🧍 Fake users          Bots farm tokens meant for real participants
+  💸 Wasted funds        Projects distribute tokens to non-humans
+  📉 Token devaluation   Rewards lose meaning and value
 
-## Quick Start with Docker Compose
+**Web3 incentives only work if rewards reach real people.**
 
-The easiest way to run the entire system is using Docker Compose:
+------------------------------------------------------------------------
 
-1. **Create environment file:**
-```bash
-cp .env.example .env
-# Edit .env with your configuration (WorldID app ID, blockchain RPC URL, etc.)
+## ✅ Our Solution
+
+We built a **proof-of-human reward system** using World ID.
+
+### 🔄 Flow
+
+1.  User verifies they are human using **World ID**
+2.  User connects wallet
+3.  User submits proof to our smart contract
+4.  Contract verifies proof on-chain
+5.  If valid and unused → user receives tokens 🎉
+
+One human = one reward. Always.
+
+------------------------------------------------------------------------
+
+## 🏗 Architecture
+
+**Smart Contracts**
+
+  Contract            Purpose
+  ------------------- ------------------------------------------
+  `RewardToken.sol`   ERC-20 token used as event reward
+  `HumanReward.sol`   Verifies World ID proof and mints tokens
+
+**External Integration**
+
+  Service    Role
+  ---------- ------------------------------
+  World ID   Provides proof of personhood
+  MetaMask   User wallet
+  Sepolia    Test network deployment
+
+------------------------------------------------------------------------
+
+## 📜 Smart Contracts
+
+### 🪙 RewardToken.sol
+
+ERC-20 token that represents event rewards.
+
+-   Mintable\
+-   Ownership transferred to HumanReward contract\
+-   Name: **Human Reward Token (HRT)**
+
+------------------------------------------------------------------------
+
+### 🧑‍🚀 HumanReward.sol
+
+Core logic of the system.
+
+**Responsibilities:**
+
+✔ Verifies World ID proof\
+✔ Prevents double claims using nullifier hash\
+✔ Mints reward tokens to verified humans
+
+**Key Security Feature**
+
+``` solidity
+mapping(uint256 => bool) public nullifierHashes;
 ```
 
-2. **Start all services:**
-```bash
-# Start in background
-docker-compose up -d
+Prevents the same human from claiming twice.
 
-# Start in foreground (see logs)
-docker-compose up
+------------------------------------------------------------------------
+
+## 🚀 Deployment (Sepolia)
+
+### 1️⃣ Deploy Reward Token
+
+Deploy `RewardToken.sol`
+
+Save the contract address.
+
+------------------------------------------------------------------------
+
+### 2️⃣ Deploy Human Reward
+
+Constructor parameters:
+
+  ----------------------------------------------------------------------------------------
+  Parameter                                 Value
+  ----------------------------------------- ----------------------------------------------
+  `_worldId`                                `0x469449f251692E0779667583026b5A1E99512157`
+                                            (World ID Sepolia Router)
+
+  `_rewardToken`                            Address of deployed RewardToken
+  ----------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+### 3️⃣ Transfer Token Ownership
+
+Call on `RewardToken`:
+
+    transferOwnership(<HumanReward Contract Address>)
+
+Now only the HumanReward contract can mint tokens.
+
+------------------------------------------------------------------------
+
+## 🧪 How Users Claim Rewards
+
+1.  User opens event app\
+2.  Connects wallet\
+3.  Verifies with World ID\
+4.  Frontend generates proof\
+5.  Calls:
+
+```{=html}
+<!-- -->
 ```
+    claimReward(root, nullifierHash, proof)
 
-3. **Access the application:**
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:8000
-   - API Docs: http://localhost:8000/docs
+If successful → 🎁 Tokens are minted
 
-4. **Stop services:**
-```bash
-docker-compose down
+------------------------------------------------------------------------
 
-# To remove volumes (database data)
-docker-compose down -v
-```
+## 🔐 Security Features
 
-5. **Quick setup script:**
-```bash
-./setup.sh
-```
+  Protection             How
+  ---------------------- -------------------------
+  One reward per human   Nullifier hash tracking
+  No bot farming         World ID proof
+  Trustless minting      Smart contract logic
+  Transparent            On-chain verification
 
-**Note:** For production, make sure to:
-- Set strong `SECRET_KEY` in `.env`
-- Configure proper `WORLDID_APP_ID` and `ETHEREUM_RPC_URL`
-- Set `PRIVATE_KEY` if you want to send blockchain transactions
-- Use a reverse proxy (nginx/traefik) for production deployment
+------------------------------------------------------------------------
 
-## Manual Setup
+## 🌎 Use Cases
 
-### Backend Setup
+-   🎟 Hackathon participation rewards\
+-   🎉 Event attendance incentives\
+-   🧑‍🏫 Proof-of-learning rewards\
+-   🌍 DAO onboarding bonuses\
+-   🎮 Play-to-earn anti-bot protection
 
-1. Navigate to backend directory:
-```bash
-cd backend
-```
+------------------------------------------------------------------------
 
-2. Create virtual environment:
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+## 🧩 Future Improvements
 
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+-   Event-specific reward pools\
+-   NFT badges for participation\
+-   Off-chain reputation scoring\
+-   Multi-event reward dashboard\
+-   AI-based event recommendations
 
-4. Set up environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
+------------------------------------------------------------------------
 
-5. Set up database:
-```bash
-# Make sure PostgreSQL is running
-# Update DATABASE_URL in .env
-# Run migrations (when Alembic is configured)
-```
+## 👥 Vision
 
-6. Run the server:
-```bash
-uvicorn app.main:app --reload
-```
+We believe **Web3 rewards should go to humans, not bots.**
 
-### Frontend Setup
+Human Reward Protocol brings **real identity, real fairness, and real
+incentives** to decentralized ecosystems.
 
-1. Navigate to frontend directory:
-```bash
-cd frontend
-```
+------------------------------------------------------------------------
 
-2. Install dependencies:
-```bash
-npm install
-```
+## 📄 Credits
 
-3. Set up environment variables:
-```bash
-# Create .env file
-VITE_API_BASE_URL=http://localhost:8000
-VITE_WORLDID_APP_ID=your_worldid_app_id
-VITE_WORLDID_ACTION=worldid-reward-claim
-```
-
-4. Run the development server:
-```bash
-npm run dev
-```
-
-## API Endpoints
-
-### Organizer Endpoints
-- `POST /api/organizers/register` - Register as organizer
-- `POST /api/organizers/login` - Organizer authentication
-- `POST /api/organizers/events` - Create new event with rewards
-- `GET /api/organizers/events` - List organizer's events
-- `GET /api/organizers/events/{event_id}/participants` - View event participants
-- `GET /api/organizers/events/{event_id}/claims` - View event claims
-
-### Participant Endpoints
-- `GET /api/events` - Browse available events
-- `GET /api/events/{event_id}` - Get event details
-- `POST /api/events/{event_id}/join` - Join event (with WorldID verification)
-- `POST /api/events/{event_id}/claim` - Claim reward from event (with WorldID verification)
-- `GET /api/participants/profile/{wallet_address}` - Get participant profile
-
-## Security Features
-
-1. **WorldID Proof Verification**: Every claim requires fresh WorldID proof verification on the backend
-2. **One Wallet Per WorldID**: Database enforces 1:1 mapping (WorldID → Wallet)
-3. **Duplicate Prevention Per Event**: Check WorldID uniqueness per event before processing any claim
-4. **Rate Limiting**: Prevents spam/abuse on claim endpoints
-5. **Input Validation**: Validates all wallet addresses and WorldID proofs
-6. **Transaction Safety**: Uses nonces and proper gas estimation
-
-See [docs/anti-abuse.md](docs/anti-abuse.md) for detailed anti-abuse measures.
-
-## Privacy Features
-
-- **Zero-Knowledge Proofs**: Verify uniqueness without revealing identity
-- **Data Minimization**: Only store nullifier hash (anonymous) and wallet address (public)
-- **No Personal Information**: Never collect name, email, phone, or identity data
-- **Privacy-by-Design**: Built into the system architecture
-
-See [PRIVACY.md](PRIVACY.md) for comprehensive privacy documentation.
-
-## Database Schema
-
-- `organizers` - Organizer accounts
-- `events` - Event definitions
-- `participants` - WorldID → Wallet mapping (1:1)
-- `event_participants` - Many-to-many relationship (participant joined event)
-- `rewards` - Reward definitions linked to events
-- `claims` - Claim history with transaction hashes
-
-## Docker Services
-
-The Docker Compose setup includes:
-
-- **PostgreSQL Database**: Persistent data storage
-- **Backend API**: FastAPI application with hot reload enabled
-- **Frontend**: React application with Vite dev server (hot reload enabled)
-
-**Note:** This setup is optimized for development with hot reload. For production deployment, consider:
-- Using production Dockerfiles (Dockerfile instead of Dockerfile.dev)
-- Setting up Nginx reverse proxy
-- Disabling hot reload
-- Using environment-specific configurations
-
-### Database Migrations
-
-The database schema is automatically created on first startup. For production, consider using Alembic migrations:
-
-```bash
-docker-compose exec backend alembic upgrade head
-```
-
-## License
-
-MIT
+Das Prithwis, Banu Sabira, Uddin Siyam, 성현
