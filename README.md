@@ -20,6 +20,7 @@ transparently.
 ## ❗ Problem
 
 Web3 reward systems are broken.
+we provides reward systems to the Moderators and the users.
 
   Issue                  What Happens
   ---------------------- ----------------------------------------------
