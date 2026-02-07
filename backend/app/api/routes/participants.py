@@ -224,7 +224,7 @@ async def join_event(
     db.add(event_participant)
     db.commit()
     
-    logger.info(f"Participant {current_participant.id} (Google ID: {current_participant.google_id}) joined event {event_id}")
+    logger.info(f"Participant {current_participant.id} (Email: {current_participant.email or 'N/A'}, Google ID: {current_participant.google_id or 'N/A'}) joined event {event_id}")
     
     return {
         "message": "Successfully joined event",
@@ -441,6 +441,7 @@ async def get_current_participant_profile(
             logger.warning("participant_id column does not exist. Returning profile without events.")
             return {
                 "id": current_participant.id,
+                "email": current_participant.email,
                 "google_id": current_participant.google_id,
                 "wallet_address": current_participant.wallet_address,
                 "created_at": current_participant.created_at,
@@ -491,6 +492,7 @@ async def get_current_participant_profile(
         
         return {
             "id": current_participant.id,
+            "email": current_participant.email,
             "google_id": current_participant.google_id,
             "wallet_address": current_participant.wallet_address,
             "created_at": current_participant.created_at,
@@ -503,6 +505,7 @@ async def get_current_participant_profile(
             logger.warning(f"Schema mismatch: {str(e)}. Returning profile without events.")
             return {
                 "id": current_participant.id,
+                "email": current_participant.email,
                 "google_id": current_participant.google_id,
                 "wallet_address": current_participant.wallet_address,
                 "created_at": current_participant.created_at,
@@ -515,6 +518,7 @@ async def get_current_participant_profile(
         # Return basic profile info even on error
         return {
             "id": current_participant.id,
+            "email": current_participant.email,
             "google_id": current_participant.google_id,
             "wallet_address": current_participant.wallet_address,
             "created_at": current_participant.created_at,

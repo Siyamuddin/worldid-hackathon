@@ -2,12 +2,14 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from sqlalchemy.exc import OperationalError, ProgrammingError
-from typing import List
+from typing import List, Optional
+from pydantic import BaseModel
 from app.config.database import get_db
 from app.models.event import Event
 from app.models.reward import Reward, RewardType
 from app.models.participant import Participant
-from app.models.claim import Claim
+from app.models.event_participant import EventParticipant
+from app.models.claim import Claim, ClaimStatus
 from app.schemas.event import EventCreate, EventUpdate, EventResponse, EventListResponse
 from app.schemas.reward import RewardResponse
 from app.middleware.participant_auth import get_current_participant
@@ -15,6 +17,19 @@ from app.config.logging import logger
 from decimal import Decimal
 
 router = APIRouter()
+
+
+class DistributeRewardsRequest(BaseModel):
+    participant_ids: List[int]
+
+
+class AddRewardRequest(BaseModel):
+    reward_type: RewardType
+    token_address: str
+    amount: Optional[float] = None  # For ERC-20
+    token_id: Optional[int] = None  # For ERC-721/1155
+    name: Optional[str] = None
+    description: Optional[str] = None
 
 
 @router.post("", response_model=EventResponse, status_code=status.HTTP_201_CREATED)
@@ -326,3 +341,193 @@ async def unpublish_event(
     db.refresh(event)
     
     return event
+
+
+@router.post("/{event_id}/rewards", response_model=RewardResponse)
+async def add_reward_to_event(
+    event_id: int,
+    reward_data: AddRewardRequest,
+    current_participant: Participant = Depends(get_current_participant),
+    db: Session = Depends(get_db)
+):
+    """Add a reward to an existing event (event creator only)"""
+    # Verify event exists and user is the creator
+    event = db.query(Event).filter(
+        Event.id == event_id,
+        Event.participant_id == current_participant.id
+    ).first()
+    
+    if not event:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Event not found or you are not the creator"
+        )
+    
+    # Create reward
+    reward = Reward(
+        event_id=event_id,
+        reward_type=reward_data.reward_type,
+        token_address=reward_data.token_address,
+        amount=Decimal(str(reward_data.amount)) if reward_data.amount else None,
+        token_id=reward_data.token_id,
+        name=reward_data.name,
+        description=reward_data.description
+    )
+    db.add(reward)
+    db.commit()
+    db.refresh(reward)
+    
+    logger.info(f"Reward {reward.id} added to event {event_id} by participant {current_participant.id}")
+    
+    return reward
+
+
+@router.post("/{event_id}/distribute-rewards")
+async def distribute_rewards(
+    event_id: int,
+    request: DistributeRewardsRequest,
+    current_participant: Participant = Depends(get_current_participant),
+    db: Session = Depends(get_db)
+):
+    """Distribute rewards to selected participants (event creator only)"""
+    try:
+        logger.info(f"Distribute rewards request for event {event_id} by participant {current_participant.id}. Participant IDs: {request.participant_ids}")
+        
+        # Verify event exists and user is the creator
+        event = db.query(Event).filter(
+            Event.id == event_id,
+            Event.participant_id == current_participant.id
+        ).first()
+        
+        if not event:
+            logger.warning(f"Event {event_id} not found or participant {current_participant.id} is not the creator")
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Event not found or you are not the creator"
+            )
+        
+        # Get all rewards for this event
+        rewards = db.query(Reward).filter(Reward.event_id == event_id).all()
+        logger.info(f"Found {len(rewards)} rewards for event {event_id}")
+        
+        if not rewards:
+            logger.warning(f"No rewards configured for event {event_id}")
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="No rewards configured for this event. Please add rewards to the event first using POST /api/events/{event_id}/rewards"
+            )
+        
+        # Validate participant_ids list
+        if not request.participant_ids or len(request.participant_ids) == 0:
+            logger.warning(f"Empty participant_ids list provided for event {event_id}")
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="No participant IDs provided"
+            )
+        
+        # Verify all participant IDs are valid and joined the event
+        valid_participants = db.query(Participant).filter(
+            Participant.id.in_(request.participant_ids)
+        ).all()
+        
+        valid_participant_ids = {p.id for p in valid_participants}
+        invalid_participants = set(request.participant_ids) - valid_participant_ids
+        
+        if invalid_participants:
+            logger.warning(f"Invalid participant IDs: {invalid_participants}")
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Some participant IDs are invalid: {invalid_participants}"
+            )
+        
+        # Verify participants joined the event
+        event_participants = db.query(EventParticipant).filter(
+            EventParticipant.event_id == event_id,
+            EventParticipant.participant_id.in_(request.participant_ids)
+        ).all()
+        
+        joined_participant_ids = {ep.participant_id for ep in event_participants}
+        missing_participants = set(request.participant_ids) - joined_participant_ids
+        
+        if missing_participants:
+            logger.warning(f"Participants {missing_participants} have not joined event {event_id}")
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Participants {missing_participants} have not joined this event"
+            )
+        
+        logger.info(f"All {len(request.participant_ids)} participants are valid and have joined the event")
+        
+        # Create claims for each participant for each reward
+        created_claims = []
+        skipped_claims = []
+        
+        for participant_id in request.participant_ids:
+            participant = next(p for p in valid_participants if p.id == participant_id)
+            
+            # Check if participant has wallet address
+            if not participant.wallet_address:
+                logger.warning(f"Participant {participant_id} does not have a wallet address. Skipping reward distribution.")
+                skipped_claims.append({
+                    "participant_id": participant_id,
+                    "reason": "No wallet address"
+                })
+                continue
+            
+            for reward in rewards:
+                # Check if claim already exists
+                existing_claim = db.query(Claim).filter(
+                    Claim.event_id == event_id,
+                    Claim.participant_id == participant_id,
+                    Claim.reward_id == reward.id
+                ).first()
+                
+                if existing_claim:
+                    skipped_claims.append({
+                        "participant_id": participant_id,
+                        "reward_id": reward.id,
+                        "reason": "Claim already exists"
+                    })
+                    continue
+                
+                # Create new claim
+                claim = Claim(
+                    event_id=event_id,
+                    participant_id=participant_id,
+                    reward_id=reward.id,
+                    status=ClaimStatus.PENDING
+                )
+                db.add(claim)
+                created_claims.append({
+                    "participant_id": participant_id,
+                    "reward_id": reward.id,
+                    "wallet_address": participant.wallet_address
+                })
+        
+        db.commit()
+        
+        logger.info(
+            f"Event creator {current_participant.id} distributed rewards to {len(created_claims)} claims "
+            f"for {len(request.participant_ids)} participants in event {event_id}"
+        )
+        
+        return {
+            "event_id": event_id,
+            "created_claims": len(created_claims),
+            "skipped_claims": len(skipped_claims),
+            "details": {
+                "created": created_claims,
+                "skipped": skipped_claims
+            },
+            "message": f"Successfully created {len(created_claims)} reward claims"
+        }
+    except HTTPException:
+        # Re-raise HTTP exceptions
+        raise
+    except Exception as e:
+        logger.error(f"Unexpected error distributing rewards: {str(e)}", exc_info=True)
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error distributing rewards: {str(e)}"
+        )

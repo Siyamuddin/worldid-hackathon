@@ -24,8 +24,10 @@ class GoogleAuthService:
         """
         try:
             if not google_auth_settings.GOOGLE_CLIENT_ID:
-                logger.warning("Google Client ID not configured")
+                logger.error("Google Client ID not configured in backend")
                 return None
+            
+            logger.info(f"Verifying Google token with Client ID: {google_auth_settings.GOOGLE_CLIENT_ID[:20]}...")
             
             # Verify the token
             idinfo = id_token.verify_oauth2_token(
@@ -39,6 +41,8 @@ class GoogleAuthService:
                 logger.warning(f"Invalid token issuer: {idinfo['iss']}")
                 return None
             
+            logger.info(f"Google token verified successfully for user: {idinfo.get('email', 'unknown')}")
+            
             # Extract user information
             return {
                 'google_id': idinfo['sub'],
@@ -47,10 +51,10 @@ class GoogleAuthService:
                 'picture': idinfo.get('picture')
             }
         except ValueError as e:
-            logger.error(f"Google token verification failed: {str(e)}")
+            logger.error(f"Google token verification failed (ValueError): {str(e)}")
             return None
         except Exception as e:
-            logger.error(f"Unexpected error verifying Google token: {str(e)}")
+            logger.error(f"Unexpected error verifying Google token: {str(e)}", exc_info=True)
             return None
     
     @staticmethod
@@ -81,6 +85,8 @@ class GoogleAuthService:
                 # Create new participant
                 participant = Participant(
                     google_id=google_id,
+                    email=email,  # Store email if provided
+                    password_hash=None,  # No password for Google auth
                     world_id_hash=None,  # Will be set when they participate
                     wallet_address=None  # Will be set when they connect wallet
                 )

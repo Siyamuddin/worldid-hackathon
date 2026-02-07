@@ -44,61 +44,61 @@ export function CreateEvent({ onSuccess, onCancel }: CreateEventProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <h3 className="text-xl font-semibold mb-4">Create New Event</h3>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="bg-[#0f2a24] border border-[#00FFC2]/20 rounded-lg shadow-md p-4 sm:p-6">
+      <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-white">Create New Event</h3>
+      <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">
-            Event Name <span className="text-red-500">*</span>
+          <label className="block text-xs sm:text-sm font-medium mb-1 text-gray-300">
+            Event Name <span className="text-red-400">*</span>
           </label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2.5 sm:py-2 bg-[#0a1f1a] border border-[#00FFC2]/30 rounded-lg text-white text-sm sm:text-base placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00FFC2] focus:border-[#00FFC2]"
             placeholder="Enter event name"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Description</label>
+          <label className="block text-xs sm:text-sm font-medium mb-1 text-gray-300">Description</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2.5 sm:py-2 bg-[#0a1f1a] border border-[#00FFC2]/30 rounded-lg text-white text-sm sm:text-base placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00FFC2] focus:border-[#00FFC2]"
             rows={3}
             placeholder="Enter event description"
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <div>
-            <label className="block text-sm font-medium mb-1">Start Date</label>
+            <label className="block text-xs sm:text-sm font-medium mb-1 text-gray-300">Start Date</label>
             <input
               type="datetime-local"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2.5 sm:py-2 bg-[#0a1f1a] border border-[#00FFC2]/30 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#00FFC2] focus:border-[#00FFC2]"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">End Date</label>
+            <label className="block text-xs sm:text-sm font-medium mb-1 text-gray-300">End Date</label>
             <input
               type="datetime-local"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2.5 sm:py-2 bg-[#0a1f1a] border border-[#00FFC2]/30 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#00FFC2] focus:border-[#00FFC2]"
             />
           </div>
         </div>
 
-        <div className="flex gap-3 pt-4">
+        <div className="flex flex-col sm:flex-row gap-3 pt-3 sm:pt-4">
           <button
             type="submit"
             disabled={createEvent.isPending}
-            className="flex-1 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            className="flex-1 px-6 py-2.5 sm:py-2 bg-[#00FFC2] text-black rounded-lg hover:bg-[#00e6b8] disabled:opacity-50 disabled:cursor-not-allowed font-semibold transition-colors text-sm sm:text-base"
           >
             {createEvent.isPending ? 'Creating...' : 'Create Event'}
           </button>
@@ -106,14 +106,14 @@ export function CreateEvent({ onSuccess, onCancel }: CreateEventProps) {
             <button
               type="button"
               onClick={onCancel}
-              className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"
+              className="w-full sm:w-auto px-6 py-2.5 sm:py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm sm:text-base"
             >
               Cancel
             </button>
           )}
         </div>
 
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-400">
           Note: You can add rewards and publish the event after creation.
         </p>
       </form>

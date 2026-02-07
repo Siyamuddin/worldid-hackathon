@@ -74,3 +74,33 @@ export function handleQRCodeParams(): Record<string, string> {
   
   return result;
 }
+
+/**
+ * Check if we're in a mini app environment that might have wallet connection issues
+ */
+export function isMiniAppEnvironment(): boolean {
+  const config = detectMiniApp();
+  if (config.isMiniApp) return true;
+  
+  // Also check for common mini app user agents
+  const userAgent = navigator.userAgent.toLowerCase();
+  return userAgent.includes('telegram') || 
+         userAgent.includes('webview') ||
+         userAgent.includes('wv') ||
+         (window as any).TelegramWebApp ||
+         (window as any).Telegram?.WebApp;
+}
+
+/**
+ * Get wallet address from URL parameters (for deep linking back from wallet connection)
+ */
+export function getWalletFromParams(): string | null {
+  const params = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(window.location.hash.substring(1));
+  
+  return params.get('wallet') || 
+         hashParams.get('wallet') || 
+         params.get('address') ||
+         hashParams.get('address') ||
+         null;
+}

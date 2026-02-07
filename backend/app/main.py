@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from app.config.database import engine, Base
 from app.config.logging import logger
 from app.api.routes import organizers, events, participants, auth
@@ -13,28 +12,9 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS middleware
-# Note: CORS is now handled by nginx, but we keep this for direct backend access
-import os
-allowed_origins = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "http://localhost:80",
-    "https://www.halalhaven.kr",
-    "https://halalhaven.kr",
-]
-# Add domain from environment if set
-domain = os.getenv("DOMAIN", "")
-if domain:
-    allowed_origins.extend([f"https://{domain}", f"http://{domain}"])
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Nginx handles CORS, so we allow all for simplicity
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# CORS is handled by nginx reverse proxy
+# Removing CORS middleware to prevent duplicate headers
+# If accessing backend directly (not through nginx), configure CORS at the proxy level
 
 # Include routers
 # Note: Organizer routes are deprecated - participants can now create events

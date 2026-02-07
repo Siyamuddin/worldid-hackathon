@@ -11,7 +11,8 @@ class ParticipantClaimRewards(BaseModel):
 
 class ParticipantResponse(BaseModel):
     id: int
-    google_id: str
+    email: Optional[str] = None
+    google_id: Optional[str] = None
     wallet_address: Optional[str]
     created_at: datetime
     joined_events: List[EventListResponse] = []

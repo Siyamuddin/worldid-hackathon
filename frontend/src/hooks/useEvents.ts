@@ -83,9 +83,21 @@ export function useMyEvents() {
   return useQuery({
     queryKey: ['my-events'],
     queryFn: async () => {
-      const response = await api.get<Event[]>('/api/events');
-      return Array.isArray(response.data) ? response.data : [];
+      try {
+        const response = await api.get<Event[]>('/api/events');
+        return Array.isArray(response.data) ? response.data : [];
+      } catch (error: any) {
+        // If 401 or 403, user is not authenticated - return empty array
+        if (error.response?.status === 401 || error.response?.status === 403) {
+          return [];
+        }
+        // For other errors, log and return empty array
+        console.error('Error fetching my events:', error);
+        return [];
+      }
     },
+    enabled: !!localStorage.getItem('participant_token'),
+    retry: false,
   });
 }
 
@@ -139,6 +151,52 @@ export function useClaimRewards() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['events'] });
       queryClient.invalidateQueries({ queryKey: ['event'] });
+    },
+  });
+}
+
+export function useAddReward() {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async ({ eventId, rewardData }: {
+      eventId: number;
+      rewardData: {
+        reward_type: 'ERC20' | 'ERC721' | 'ERC1155';
+        token_address: string;
+        amount?: number;
+        token_id?: number;
+        name?: string;
+        description?: string;
+      };
+    }) => {
+      const response = await api.post(`/api/events/${eventId}/rewards`, rewardData);
+      return response.data;
+    },
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ['event', variables.eventId] });
+      queryClient.invalidateQueries({ queryKey: ['events'] });
+    },
+  });
+}
+
+export function useDistributeRewards() {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async ({ eventId, participantIds }: {
+      eventId: number;
+      participantIds: number[];
+    }) => {
+      const response = await api.post(`/api/events/${eventId}/distribute-rewards`, {
+        participant_ids: participantIds,
+      });
+      return response.data;
+    },
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ['event-participants', variables.eventId] });
+      queryClient.invalidateQueries({ queryKey: ['event-claims', variables.eventId] });
+      queryClient.invalidateQueries({ queryKey: ['event', variables.eventId] });
     },
   });
 }

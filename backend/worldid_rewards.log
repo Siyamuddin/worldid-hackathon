@@ -278,3 +278,164 @@ DETAIL:  Failing row contains (2, null, nfew, nfew, 2026-02-07 06:06:00+00, 2026
 2026-02-06 21:11:39,145 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
 2026-02-06 21:17:31,595 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
 2026-02-06 21:18:04,480 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 22:28:53,758 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 22:30:23,102 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 22:34:30,867 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 22:52:07,784 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 22:52:57,077 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 22:53:17,488 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 22:54:36,110 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 22:54:47,135 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 23:01:32,281 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 23:05:14,956 - worldid_rewards - INFO - Participant 1 (Google ID: 117723283014950947618) joined event 3
+2026-02-06 23:16:36,721 - worldid_rewards - INFO - New participant created: 2 (Google ID: 105390156304409634846)
+2026-02-06 23:16:36,722 - worldid_rewards - INFO - Participant authenticated: 2 (Google ID: 105390156304409634846)
+2026-02-06 23:16:48,860 - worldid_rewards - INFO - Participant 2 (Google ID: 105390156304409634846) joined event 3
+2026-02-06 23:19:35,072 - worldid_rewards - INFO - New participant created: 3 (Google ID: 114152014526414124332)
+2026-02-06 23:19:35,074 - worldid_rewards - INFO - Participant authenticated: 3 (Google ID: 114152014526414124332)
+2026-02-06 23:19:57,012 - worldid_rewards - INFO - Participant 3 (Google ID: 114152014526414124332) joined event 3
+2026-02-06 23:30:43,993 - worldid_rewards - INFO - Participant authenticated: 3 (Google ID: 114152014526414124332)
+2026-02-06 23:35:55,095 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:36:06,750 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:36:16,767 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:36:39,002 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:47:36,692 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:54:57,206 - worldid_rewards - WARNING - Schema check failed: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: 
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name='events' AND column_name='participant_id'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Attempting raw SQL query.
+2026-02-06 23:54:57,208 - worldid_rewards - ERROR - Raw SQL query also failed: Can't reconnect until invalid transaction is rolled back.  Please rollback() fully before proceeding (Background on this error at: https://sqlalche.me/e/20/8s2b)
+2026-02-06 23:55:13,036 - worldid_rewards - WARNING - Schema check failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Attempting raw SQL query.
+2026-02-06 23:55:23,046 - worldid_rewards - ERROR - Raw SQL query also failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-02-06 23:57:38,415 - worldid_rewards - ERROR - Unexpected error verifying Google token: Could not find a suitable TLS CA certificate bundle, invalid path: /usr/local/lib/python3.11/site-packages/certifi/cacert.pem
+2026-02-06 23:57:38,419 - worldid_rewards - WARNING - Google token verification failed or returned None
+2026-02-07 00:01:19,465 - worldid_rewards - WARNING - Schema check failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Attempting raw SQL query.
+2026-02-07 00:01:29,470 - worldid_rewards - ERROR - Raw SQL query also failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-02-07 00:03:28,333 - worldid_rewards - ERROR - Unexpected error verifying Google token: Could not find a suitable TLS CA certificate bundle, invalid path: /usr/local/lib/python3.11/site-packages/certifi/cacert.pem
+2026-02-07 00:03:28,335 - worldid_rewards - WARNING - Google token verification failed or returned None
+2026-02-07 00:04:47,032 - worldid_rewards - WARNING - Schema check failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Attempting raw SQL query.
+2026-02-07 00:04:57,042 - worldid_rewards - ERROR - Raw SQL query also failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-02-07 00:15:42,477 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:19:06,775 - worldid_rewards - INFO - Verifying Google token with Client ID: 907137476909-hu02m87...
+2026-02-07 00:19:06,981 - worldid_rewards - INFO - Google token verified successfully for user: siyamuddin177@gmail.com
+2026-02-07 00:19:06,990 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-07 00:22:55,883 - worldid_rewards - INFO - Verifying Google token with Client ID: 907137476909-hu02m87...
+2026-02-07 00:22:56,131 - worldid_rewards - INFO - Google token verified successfully for user: prithwisdas2017@gmail.com
+2026-02-07 00:22:56,136 - worldid_rewards - INFO - Participant authenticated: 2 (Google ID: 105390156304409634846)
+2026-02-07 00:27:43,291 - worldid_rewards - INFO - Participant 2 (Google ID: 105390156304409634846) joined event 4
+2026-02-07 00:29:07,069 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:29:26,146 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:29:40,062 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:29:44,305 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:31:14,809 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:31:27,946 - worldid_rewards - INFO - Distribute rewards request for event 4 by participant 1. Participant IDs: [2]
+2026-02-07 00:31:27,949 - worldid_rewards - INFO - Found 0 rewards for event 4
+2026-02-07 00:31:27,950 - worldid_rewards - WARNING - No rewards configured for event 4
+2026-02-07 00:32:14,369 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:32:18,576 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:32:19,851 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:32:38,790 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:32:45,838 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:33:26,453 - worldid_rewards - INFO - Distribute rewards request for event 4 by participant 1. Participant IDs: [2]
+2026-02-07 00:33:26,458 - worldid_rewards - INFO - Found 1 rewards for event 4
+2026-02-07 00:33:26,463 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 00:33:26,463 - worldid_rewards - WARNING - Participant 2 does not have a wallet address. Skipping reward distribution.
+2026-02-07 00:33:26,466 - worldid_rewards - INFO - Event creator 1 distributed rewards to 0 claims for 1 participants in event 4
+2026-02-07 00:37:37,934 - worldid_rewards - INFO - Distribute rewards request for event 4 by participant 1. Participant IDs: [2]
+2026-02-07 00:37:37,941 - worldid_rewards - INFO - Found 1 rewards for event 4
+2026-02-07 00:37:37,944 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 00:37:37,945 - worldid_rewards - WARNING - Participant 2 does not have a wallet address. Skipping reward distribution.
+2026-02-07 00:37:37,947 - worldid_rewards - INFO - Event creator 1 distributed rewards to 0 claims for 1 participants in event 4
+2026-02-07 00:46:00,603 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:46:02,844 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:46:04,630 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:46:26,261 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:46:29,888 - worldid_rewards - INFO - Verifying Google token with Client ID: 907137476909-hu02m87...
+2026-02-07 00:46:30,190 - worldid_rewards - INFO - Google token verified successfully for user: siyamuddin177@gmail.com
+2026-02-07 00:46:30,211 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-07 00:47:29,603 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:47:45,428 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:04,050 - worldid_rewards - INFO - New participant registered: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 00:48:20,148 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:47,646 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:49,567 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:51,337 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:52,629 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:54,384 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:57,211 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:49:16,128 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:49:20,255 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 01:08:45,701 - worldid_rewards - WARNING - Login attempt with non-existent email: siyam@globalsellerket.com
+2026-02-07 01:09:31,907 - worldid_rewards - INFO - New participant registered: 5 (Email: siyam@globalsellerket.com)
+2026-02-07 01:10:25,107 - worldid_rewards - INFO - Participant logged in: 5 (Email: siyam@globalsellerket.com)
+2026-02-07 01:10:36,507 - worldid_rewards - INFO - Participant 5 (Email: siyam@globalsellerket.com, Google ID: N/A) joined event 4
+2026-02-07 01:11:00,219 - worldid_rewards - INFO - Participant logged in: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 01:12:37,556 - worldid_rewards - INFO - Participant 5 (Email: siyam@globalsellerket.com, Google ID: N/A) joined event 5
+2026-02-07 01:12:52,231 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [5]
+2026-02-07 01:12:52,237 - worldid_rewards - INFO - Found 0 rewards for event 5
+2026-02-07 01:12:52,238 - worldid_rewards - WARNING - No rewards configured for event 5
+2026-02-07 01:25:30,277 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 01:31:11,370 - worldid_rewards - INFO - Reward 2 added to event 5 by participant 4
+2026-02-07 01:31:19,486 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [5]
+2026-02-07 01:31:19,491 - worldid_rewards - INFO - Found 1 rewards for event 5
+2026-02-07 01:31:19,495 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 01:31:19,495 - worldid_rewards - WARNING - Participant 5 does not have a wallet address. Skipping reward distribution.
+2026-02-07 01:31:19,498 - worldid_rewards - INFO - Event creator 4 distributed rewards to 0 claims for 1 participants in event 5
+2026-02-07 01:34:48,572 - worldid_rewards - INFO - Participant logged in: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 01:35:01,318 - worldid_rewards - INFO - Participant logged in: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 01:35:44,105 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [5]
+2026-02-07 01:35:44,107 - worldid_rewards - INFO - Found 1 rewards for event 5
+2026-02-07 01:35:44,108 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 01:35:44,108 - worldid_rewards - WARNING - Participant 5 does not have a wallet address. Skipping reward distribution.
+2026-02-07 01:35:44,109 - worldid_rewards - INFO - Event creator 4 distributed rewards to 0 claims for 1 participants in event 5
+2026-02-07 01:42:55,509 - worldid_rewards - INFO - New participant registered: 6 (Email: siyamtest@test.com)
+2026-02-07 01:43:20,902 - worldid_rewards - INFO - New participant registered: 7 (Email: prithwisdas2017@gmail.com)
+2026-02-07 01:43:42,884 - worldid_rewards - INFO - Participant 7 (Email: prithwisdas2017@gmail.com, Google ID: N/A) joined event 3
+2026-02-07 01:52:02,775 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:03:41,179 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:22:34,310 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:23:28,842 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:32:14,118 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:33:01,641 - worldid_rewards - WARNING - Invalid password attempt for email: siyamtest@test.com
+2026-02-07 02:33:09,955 - worldid_rewards - WARNING - Invalid password attempt for email: siyamtest@test.com
+2026-02-07 02:34:09,217 - worldid_rewards - INFO - New participant registered: 8 (Email: siyamtest1@test.com)
+2026-02-07 02:35:43,331 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [5]
+2026-02-07 02:35:43,336 - worldid_rewards - INFO - Found 1 rewards for event 5
+2026-02-07 02:35:43,340 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 02:35:43,340 - worldid_rewards - WARNING - Participant 5 does not have a wallet address. Skipping reward distribution.
+2026-02-07 02:35:43,343 - worldid_rewards - INFO - Event creator 4 distributed rewards to 0 claims for 1 participants in event 5
+2026-02-07 02:37:55,133 - worldid_rewards - WARNING - Invalid password attempt for email: siyamtest@test.com
+2026-02-07 02:38:02,828 - worldid_rewards - WARNING - Invalid password attempt for email: siyamtest@test.com
+2026-02-07 02:38:31,690 - worldid_rewards - INFO - Participant logged in: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 02:39:19,331 - worldid_rewards - WARNING - Login attempt with non-existent email: aibuddy111@gmail.com
+2026-02-07 02:39:37,673 - worldid_rewards - INFO - New participant registered: 9 (Email: aibuddy111@gmail.com)
+2026-02-07 02:39:47,578 - worldid_rewards - INFO - Participant 9 (Email: aibuddy111@gmail.com, Google ID: N/A) joined event 5
+2026-02-07 02:40:02,018 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [9]
+2026-02-07 02:40:02,024 - worldid_rewards - INFO - Found 1 rewards for event 5
+2026-02-07 02:40:02,027 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 02:40:02,027 - worldid_rewards - WARNING - Participant 9 does not have a wallet address. Skipping reward distribution.
+2026-02-07 02:40:02,030 - worldid_rewards - INFO - Event creator 4 distributed rewards to 0 claims for 1 participants in event 5
+2026-02-07 02:46:51,266 - worldid_rewards - INFO - Participant logged in: 9 (Email: aibuddy111@gmail.com)
+2026-02-07 02:53:17,755 - worldid_rewards - INFO - Participant logged in: 9 (Email: aibuddy111@gmail.com)
+2026-02-07 02:56:23,351 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 03:27:02,527 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 03:32:11,475 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 03:32:31,387 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
