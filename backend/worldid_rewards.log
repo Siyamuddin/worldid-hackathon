@@ -1,1 +1,441 @@
 2026-02-06 13:55:58,474 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 14:43:06,624 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 14:43:22,353 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 14:43:32,344 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 14:43:52,467 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 14:44:30,019 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 14:44:47,629 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:07:08,565 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:07:12,034 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:07:14,108 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:07:21,977 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:07:42,892 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:07:49,981 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:07:56,503 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:08:01,700 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:08:07,398 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:39:42,051 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:51:55,717 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:53:13,482 - worldid_rewards - INFO - New participant created: 1 (Google ID: 117723283014950947618)
+2026-02-06 15:53:13,483 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 15:53:50,286 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:53:58,410 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:54:01,307 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:54:05,588 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:54:21,364 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 15:54:28,322 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:05:27,408 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:07:30,061 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 16:18:34,275 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:26:45,287 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:33:42,054 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:34:51,517 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:36:47,393 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:40:17,958 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:40:38,007 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:46:59,563 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 16:59:56,850 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 17:02:14,208 - worldid_rewards - ERROR - Google token verification failed: Wrong number of segments in token: b'test'
+2026-02-06 17:15:54,020 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 17:16:31,660 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 17:17:54,122 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 17:20:43,477 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 17:22:08,279 - worldid_rewards - ERROR - Google token verification failed: Wrong number of segments in token: b'test'
+2026-02-06 17:22:10,697 - worldid_rewards - ERROR - Google token verification failed: Wrong number of segments in token: b'test'
+2026-02-06 17:25:34,893 - worldid_rewards - ERROR - Google token verification failed: Wrong number of segments in token: b'test'
+2026-02-06 17:27:47,701 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 17:35:13,061 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 17:40:56,158 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 17:47:55,186 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 17:51:43,781 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 17:55:08,081 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 18:01:03,425 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:47:02,748 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:47:38,045 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:47:58,967 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:48:10,029 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:48:27,255 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:48:30,212 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:50:32,660 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:53:17,553 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:53:19,578 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:53:33,099 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:55:26,952 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 19:59:24,255 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 20:14:37,562 - worldid_rewards - ERROR - Unexpected error verifying Google token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /oauth2/v1/certs (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0xffffabe0df90>, 'Connection to www.googleapis.com timed out. (connect timeout=120)'))
+2026-02-06 20:35:14,543 - worldid_rewards - ERROR - Unexpected error verifying Google token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /oauth2/v1/certs (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0xffffabe0eb90>, 'Connection to www.googleapis.com timed out. (connect timeout=120)'))
+2026-02-06 20:56:20,666 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 20:56:44,758 - worldid_rewards - WARNING - participant_id column does not exist. Using raw SQL query.
+2026-02-06 20:57:51,119 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 20:57:59,227 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 20:58:06,409 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 20:58:10,369 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 20:58:29,832 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 20:58:36,803 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 20:59:02,379 - worldid_rewards - WARNING - participant_id column does not exist. Using raw SQL query.
+2026-02-06 20:59:09,718 - worldid_rewards - ERROR - Database error in find_or_create_participant: Could not determine join condition between parent/child tables on relationship Organizer.events - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 2419, in _determine_joins
+    self.primaryjoin = join_condition(
+                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/util.py", line 123, in join_condition
+    return Join._join_condition(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/selectable.py", line 1358, in _join_condition
+    raise exc.NoForeignKeysError(
+sqlalchemy.exc.NoForeignKeysError: Can't find any foreign key relationships between 'organizers' and 'events'.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/app/services/google_auth_service.py", line 76, in find_or_create_participant
+    participant = db.query(Participant).filter(
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2912, in query
+    return self._query_cls(entities, self, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 276, in __init__
+    self._set_entities(entities)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 288, in _set_entities
+    self._raw_columns = [
+                        ^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 289, in <listcomp>
+    coercions.expect(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/coercions.py", line 406, in expect
+    insp._post_inspect
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 1260, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+                                           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 2707, in _post_inspect
+    self._check_configure()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 2386, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 4199, in _configure_registries
+    _do_configure_registries(registries, cascade)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 4240, in _do_configure_registries
+    mapper._post_configure_properties()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 2403, in _post_configure_properties
+    prop.init()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/interfaces.py", line 579, in init
+    self.do_init()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 1637, in do_init
+    self._setup_join_conditions()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 1882, in _setup_join_conditions
+    self._join_condition = jc = JoinCondition(
+                                ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 2306, in __init__
+    self._determine_joins()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 2440, in _determine_joins
+    raise sa_exc.NoForeignKeysError(
+sqlalchemy.exc.NoForeignKeysError: Could not determine join condition between parent/child tables on relationship Organizer.events - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2026-02-06 20:59:09,724 - worldid_rewards - ERROR - Database error creating/finding participant: Could not determine join condition between parent/child tables on relationship Organizer.events - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 2419, in _determine_joins
+    self.primaryjoin = join_condition(
+                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/util.py", line 123, in join_condition
+    return Join._join_condition(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/selectable.py", line 1358, in _join_condition
+    raise exc.NoForeignKeysError(
+sqlalchemy.exc.NoForeignKeysError: Can't find any foreign key relationships between 'organizers' and 'events'.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/app/api/routes/auth.py", line 48, in verify_google_token
+    participant = GoogleAuthService.find_or_create_participant(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/services/google_auth_service.py", line 76, in find_or_create_participant
+    participant = db.query(Participant).filter(
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2912, in query
+    return self._query_cls(entities, self, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 276, in __init__
+    self._set_entities(entities)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 288, in _set_entities
+    self._raw_columns = [
+                        ^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 289, in <listcomp>
+    coercions.expect(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/coercions.py", line 406, in expect
+    insp._post_inspect
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 1260, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+                                           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 2707, in _post_inspect
+    self._check_configure()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 2386, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 4199, in _configure_registries
+    _do_configure_registries(registries, cascade)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 4240, in _do_configure_registries
+    mapper._post_configure_properties()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 2403, in _post_configure_properties
+    prop.init()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/interfaces.py", line 579, in init
+    self.do_init()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 1637, in do_init
+    self._setup_join_conditions()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 1882, in _setup_join_conditions
+    self._join_condition = jc = JoinCondition(
+                                ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 2306, in __init__
+    self._determine_joins()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 2440, in _determine_joins
+    raise sa_exc.NoForeignKeysError(
+sqlalchemy.exc.NoForeignKeysError: Could not determine join condition between parent/child tables on relationship Organizer.events - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2026-02-06 20:59:39,515 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 20:59:58,216 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:00:06,209 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:00:26,768 - worldid_rewards - WARNING - participant_id column does not exist. Using raw SQL query.
+2026-02-06 21:00:31,454 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 21:00:56,464 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:00:59,649 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:01:20,218 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:01:38,979 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:01:45,070 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:02:09,393 - worldid_rewards - WARNING - participant_id column does not exist. Returning profile without events.
+2026-02-06 21:02:09,400 - worldid_rewards - WARNING - participant_id column does not exist. Returning empty list.
+2026-02-06 21:02:17,921 - worldid_rewards - WARNING - participant_id column does not exist. Using raw SQL query.
+2026-02-06 21:02:33,571 - worldid_rewards - WARNING - participant_id column does not exist. Returning empty list.
+2026-02-06 21:02:33,575 - worldid_rewards - WARNING - participant_id column does not exist. Returning profile without events.
+2026-02-06 21:03:18,377 - worldid_rewards - WARNING - participant_id column does not exist. Using raw SQL query.
+2026-02-06 21:03:19,370 - worldid_rewards - WARNING - participant_id column does not exist. Returning profile without events.
+2026-02-06 21:03:19,375 - worldid_rewards - WARNING - participant_id column does not exist. Returning empty list.
+2026-02-06 21:04:09,867 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:04:28,641 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:04:45,381 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:05:06,520 - worldid_rewards - ERROR - participant_id column does not exist. Database migration required.
+2026-02-06 21:05:43,051 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:06:45,932 - worldid_rewards - ERROR - Unexpected error creating event: (psycopg2.errors.NotNullViolation) null value in column "organizer_id" of relation "events" violates not-null constraint
+DETAIL:  Failing row contains (2, null, nfew, nfew, 2026-02-07 06:06:00+00, 2026-02-20 06:06:00+00, t, 2026-02-06 21:06:45.918134+00, null, f, 1).
+
+[SQL: INSERT INTO events (participant_id, name, description, start_date, end_date, is_active, is_published, updated_at) VALUES (%(participant_id)s, %(name)s, %(description)s, %(start_date)s, %(end_date)s, %(is_active)s, %(is_published)s, %(updated_at)s) RETURNING events.id, events.created_at]
+[parameters: {'participant_id': 1, 'name': 'nfew', 'description': 'nfew', 'start_date': datetime.datetime(2026, 2, 7, 6, 6), 'end_date': datetime.datetime(2026, 2, 20, 6, 6), 'is_active': True, 'is_published': False, 'updated_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.NotNullViolation: null value in column "organizer_id" of relation "events" violates not-null constraint
+DETAIL:  Failing row contains (2, null, nfew, nfew, 2026-02-07 06:06:00+00, 2026-02-20 06:06:00+00, t, 2026-02-06 21:06:45.918134+00, null, f, 1).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/app/api/routes/events.py", line 51, in create_event
+    db.flush()  # Get event ID
+    ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4312, in flush
+    self._flush(objects)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4447, in _flush
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4408, in _flush
+    flush_context.execute()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 1226, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) null value in column "organizer_id" of relation "events" violates not-null constraint
+DETAIL:  Failing row contains (2, null, nfew, nfew, 2026-02-07 06:06:00+00, 2026-02-20 06:06:00+00, t, 2026-02-06 21:06:45.918134+00, null, f, 1).
+
+[SQL: INSERT INTO events (participant_id, name, description, start_date, end_date, is_active, is_published, updated_at) VALUES (%(participant_id)s, %(name)s, %(description)s, %(start_date)s, %(end_date)s, %(is_active)s, %(is_published)s, %(updated_at)s) RETURNING events.id, events.created_at]
+[parameters: {'participant_id': 1, 'name': 'nfew', 'description': 'nfew', 'start_date': datetime.datetime(2026, 2, 7, 6, 6), 'end_date': datetime.datetime(2026, 2, 20, 6, 6), 'is_active': True, 'is_published': False, 'updated_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-02-06 21:07:22,516 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:10:01,738 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:11:39,145 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 21:17:31,595 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 21:18:04,480 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 22:28:53,758 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 22:30:23,102 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 22:34:30,867 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 22:52:07,784 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 22:52:57,077 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 22:53:17,488 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 22:54:36,110 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 22:54:47,135 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 23:01:32,281 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-06 23:05:14,956 - worldid_rewards - INFO - Participant 1 (Google ID: 117723283014950947618) joined event 3
+2026-02-06 23:16:36,721 - worldid_rewards - INFO - New participant created: 2 (Google ID: 105390156304409634846)
+2026-02-06 23:16:36,722 - worldid_rewards - INFO - Participant authenticated: 2 (Google ID: 105390156304409634846)
+2026-02-06 23:16:48,860 - worldid_rewards - INFO - Participant 2 (Google ID: 105390156304409634846) joined event 3
+2026-02-06 23:19:35,072 - worldid_rewards - INFO - New participant created: 3 (Google ID: 114152014526414124332)
+2026-02-06 23:19:35,074 - worldid_rewards - INFO - Participant authenticated: 3 (Google ID: 114152014526414124332)
+2026-02-06 23:19:57,012 - worldid_rewards - INFO - Participant 3 (Google ID: 114152014526414124332) joined event 3
+2026-02-06 23:30:43,993 - worldid_rewards - INFO - Participant authenticated: 3 (Google ID: 114152014526414124332)
+2026-02-06 23:35:55,095 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:36:06,750 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:36:16,767 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:36:39,002 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:47:36,692 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-06 23:54:57,206 - worldid_rewards - WARNING - Schema check failed: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: 
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name='events' AND column_name='participant_id'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Attempting raw SQL query.
+2026-02-06 23:54:57,208 - worldid_rewards - ERROR - Raw SQL query also failed: Can't reconnect until invalid transaction is rolled back.  Please rollback() fully before proceeding (Background on this error at: https://sqlalche.me/e/20/8s2b)
+2026-02-06 23:55:13,036 - worldid_rewards - WARNING - Schema check failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Attempting raw SQL query.
+2026-02-06 23:55:23,046 - worldid_rewards - ERROR - Raw SQL query also failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-02-06 23:57:38,415 - worldid_rewards - ERROR - Unexpected error verifying Google token: Could not find a suitable TLS CA certificate bundle, invalid path: /usr/local/lib/python3.11/site-packages/certifi/cacert.pem
+2026-02-06 23:57:38,419 - worldid_rewards - WARNING - Google token verification failed or returned None
+2026-02-07 00:01:19,465 - worldid_rewards - WARNING - Schema check failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Attempting raw SQL query.
+2026-02-07 00:01:29,470 - worldid_rewards - ERROR - Raw SQL query also failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-02-07 00:03:28,333 - worldid_rewards - ERROR - Unexpected error verifying Google token: Could not find a suitable TLS CA certificate bundle, invalid path: /usr/local/lib/python3.11/site-packages/certifi/cacert.pem
+2026-02-07 00:03:28,335 - worldid_rewards - WARNING - Google token verification failed or returned None
+2026-02-07 00:04:47,032 - worldid_rewards - WARNING - Schema check failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Attempting raw SQL query.
+2026-02-07 00:04:57,042 - worldid_rewards - ERROR - Raw SQL query also failed: (psycopg2.OperationalError) could not translate host name "db" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-02-07 00:15:42,477 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:19:06,775 - worldid_rewards - INFO - Verifying Google token with Client ID: 907137476909-hu02m87...
+2026-02-07 00:19:06,981 - worldid_rewards - INFO - Google token verified successfully for user: siyamuddin177@gmail.com
+2026-02-07 00:19:06,990 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-07 00:22:55,883 - worldid_rewards - INFO - Verifying Google token with Client ID: 907137476909-hu02m87...
+2026-02-07 00:22:56,131 - worldid_rewards - INFO - Google token verified successfully for user: prithwisdas2017@gmail.com
+2026-02-07 00:22:56,136 - worldid_rewards - INFO - Participant authenticated: 2 (Google ID: 105390156304409634846)
+2026-02-07 00:27:43,291 - worldid_rewards - INFO - Participant 2 (Google ID: 105390156304409634846) joined event 4
+2026-02-07 00:29:07,069 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:29:26,146 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:29:40,062 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:29:44,305 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:31:14,809 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:31:27,946 - worldid_rewards - INFO - Distribute rewards request for event 4 by participant 1. Participant IDs: [2]
+2026-02-07 00:31:27,949 - worldid_rewards - INFO - Found 0 rewards for event 4
+2026-02-07 00:31:27,950 - worldid_rewards - WARNING - No rewards configured for event 4
+2026-02-07 00:32:14,369 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:32:18,576 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:32:19,851 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:32:38,790 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:32:45,838 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:33:26,453 - worldid_rewards - INFO - Distribute rewards request for event 4 by participant 1. Participant IDs: [2]
+2026-02-07 00:33:26,458 - worldid_rewards - INFO - Found 1 rewards for event 4
+2026-02-07 00:33:26,463 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 00:33:26,463 - worldid_rewards - WARNING - Participant 2 does not have a wallet address. Skipping reward distribution.
+2026-02-07 00:33:26,466 - worldid_rewards - INFO - Event creator 1 distributed rewards to 0 claims for 1 participants in event 4
+2026-02-07 00:37:37,934 - worldid_rewards - INFO - Distribute rewards request for event 4 by participant 1. Participant IDs: [2]
+2026-02-07 00:37:37,941 - worldid_rewards - INFO - Found 1 rewards for event 4
+2026-02-07 00:37:37,944 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 00:37:37,945 - worldid_rewards - WARNING - Participant 2 does not have a wallet address. Skipping reward distribution.
+2026-02-07 00:37:37,947 - worldid_rewards - INFO - Event creator 1 distributed rewards to 0 claims for 1 participants in event 4
+2026-02-07 00:46:00,603 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:46:02,844 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:46:04,630 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:46:26,261 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:46:29,888 - worldid_rewards - INFO - Verifying Google token with Client ID: 907137476909-hu02m87...
+2026-02-07 00:46:30,190 - worldid_rewards - INFO - Google token verified successfully for user: siyamuddin177@gmail.com
+2026-02-07 00:46:30,211 - worldid_rewards - INFO - Participant authenticated: 1 (Google ID: 117723283014950947618)
+2026-02-07 00:47:29,603 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:47:45,428 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:04,050 - worldid_rewards - INFO - New participant registered: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 00:48:20,148 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:47,646 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:49,567 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:51,337 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:52,629 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:54,384 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:48:57,211 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:49:16,128 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 00:49:20,255 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 01:08:45,701 - worldid_rewards - WARNING - Login attempt with non-existent email: siyam@globalsellerket.com
+2026-02-07 01:09:31,907 - worldid_rewards - INFO - New participant registered: 5 (Email: siyam@globalsellerket.com)
+2026-02-07 01:10:25,107 - worldid_rewards - INFO - Participant logged in: 5 (Email: siyam@globalsellerket.com)
+2026-02-07 01:10:36,507 - worldid_rewards - INFO - Participant 5 (Email: siyam@globalsellerket.com, Google ID: N/A) joined event 4
+2026-02-07 01:11:00,219 - worldid_rewards - INFO - Participant logged in: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 01:12:37,556 - worldid_rewards - INFO - Participant 5 (Email: siyam@globalsellerket.com, Google ID: N/A) joined event 5
+2026-02-07 01:12:52,231 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [5]
+2026-02-07 01:12:52,237 - worldid_rewards - INFO - Found 0 rewards for event 5
+2026-02-07 01:12:52,238 - worldid_rewards - WARNING - No rewards configured for event 5
+2026-02-07 01:25:30,277 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 01:31:11,370 - worldid_rewards - INFO - Reward 2 added to event 5 by participant 4
+2026-02-07 01:31:19,486 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [5]
+2026-02-07 01:31:19,491 - worldid_rewards - INFO - Found 1 rewards for event 5
+2026-02-07 01:31:19,495 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 01:31:19,495 - worldid_rewards - WARNING - Participant 5 does not have a wallet address. Skipping reward distribution.
+2026-02-07 01:31:19,498 - worldid_rewards - INFO - Event creator 4 distributed rewards to 0 claims for 1 participants in event 5
+2026-02-07 01:34:48,572 - worldid_rewards - INFO - Participant logged in: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 01:35:01,318 - worldid_rewards - INFO - Participant logged in: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 01:35:44,105 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [5]
+2026-02-07 01:35:44,107 - worldid_rewards - INFO - Found 1 rewards for event 5
+2026-02-07 01:35:44,108 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 01:35:44,108 - worldid_rewards - WARNING - Participant 5 does not have a wallet address. Skipping reward distribution.
+2026-02-07 01:35:44,109 - worldid_rewards - INFO - Event creator 4 distributed rewards to 0 claims for 1 participants in event 5
+2026-02-07 01:42:55,509 - worldid_rewards - INFO - New participant registered: 6 (Email: siyamtest@test.com)
+2026-02-07 01:43:20,902 - worldid_rewards - INFO - New participant registered: 7 (Email: prithwisdas2017@gmail.com)
+2026-02-07 01:43:42,884 - worldid_rewards - INFO - Participant 7 (Email: prithwisdas2017@gmail.com, Google ID: N/A) joined event 3
+2026-02-07 01:52:02,775 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:03:41,179 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:22:34,310 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:23:28,842 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:32:14,118 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 02:33:01,641 - worldid_rewards - WARNING - Invalid password attempt for email: siyamtest@test.com
+2026-02-07 02:33:09,955 - worldid_rewards - WARNING - Invalid password attempt for email: siyamtest@test.com
+2026-02-07 02:34:09,217 - worldid_rewards - INFO - New participant registered: 8 (Email: siyamtest1@test.com)
+2026-02-07 02:35:43,331 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [5]
+2026-02-07 02:35:43,336 - worldid_rewards - INFO - Found 1 rewards for event 5
+2026-02-07 02:35:43,340 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 02:35:43,340 - worldid_rewards - WARNING - Participant 5 does not have a wallet address. Skipping reward distribution.
+2026-02-07 02:35:43,343 - worldid_rewards - INFO - Event creator 4 distributed rewards to 0 claims for 1 participants in event 5
+2026-02-07 02:37:55,133 - worldid_rewards - WARNING - Invalid password attempt for email: siyamtest@test.com
+2026-02-07 02:38:02,828 - worldid_rewards - WARNING - Invalid password attempt for email: siyamtest@test.com
+2026-02-07 02:38:31,690 - worldid_rewards - INFO - Participant logged in: 4 (Email: siyamuddin177@gmail.com)
+2026-02-07 02:39:19,331 - worldid_rewards - WARNING - Login attempt with non-existent email: aibuddy111@gmail.com
+2026-02-07 02:39:37,673 - worldid_rewards - INFO - New participant registered: 9 (Email: aibuddy111@gmail.com)
+2026-02-07 02:39:47,578 - worldid_rewards - INFO - Participant 9 (Email: aibuddy111@gmail.com, Google ID: N/A) joined event 5
+2026-02-07 02:40:02,018 - worldid_rewards - INFO - Distribute rewards request for event 5 by participant 4. Participant IDs: [9]
+2026-02-07 02:40:02,024 - worldid_rewards - INFO - Found 1 rewards for event 5
+2026-02-07 02:40:02,027 - worldid_rewards - INFO - All 1 participants are valid and have joined the event
+2026-02-07 02:40:02,027 - worldid_rewards - WARNING - Participant 9 does not have a wallet address. Skipping reward distribution.
+2026-02-07 02:40:02,030 - worldid_rewards - INFO - Event creator 4 distributed rewards to 0 claims for 1 participants in event 5
+2026-02-07 02:46:51,266 - worldid_rewards - INFO - Participant logged in: 9 (Email: aibuddy111@gmail.com)
+2026-02-07 02:53:17,755 - worldid_rewards - INFO - Participant logged in: 9 (Email: aibuddy111@gmail.com)
+2026-02-07 02:56:23,351 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 03:27:02,527 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 03:32:11,475 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized
+2026-02-07 03:32:31,387 - worldid_rewards - INFO - WorldID Reward Distribution System API initialized

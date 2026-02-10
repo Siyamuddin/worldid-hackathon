@@ -8,13 +8,18 @@ class Participant(Base):
     __tablename__ = "participants"
 
     id = Column(Integer, primary_key=True, index=True)
-    world_id_hash = Column(String, unique=True, index=True, nullable=False)
-    wallet_address = Column(String, unique=True, index=True, nullable=False)
+    email = Column(String, unique=True, index=True, nullable=True)  # Email for simple auth
+    password_hash = Column(String, nullable=True)  # Hashed password for simple auth
+    google_id = Column(String, unique=True, index=True, nullable=True)  # Optional, for backward compatibility
+    world_id_hash = Column(String, unique=True, index=True, nullable=True)  # Set on participation
+    wallet_address = Column(String, unique=True, index=True, nullable=True)  # Optional until claim
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     # Constraints
     __table_args__ = (
+        UniqueConstraint('email', name='uq_email'),
+        UniqueConstraint('google_id', name='uq_google_id'),
         UniqueConstraint('world_id_hash', name='uq_world_id_hash'),
         UniqueConstraint('wallet_address', name='uq_wallet_address'),
     )
@@ -22,3 +27,4 @@ class Participant(Base):
     # Relationships
     event_participants = relationship("EventParticipant", back_populates="participant", cascade="all, delete-orphan")
     claims = relationship("Claim", back_populates="participant", cascade="all, delete-orphan")
+    created_events = relationship("Event", back_populates="creator", cascade="all, delete-orphan")

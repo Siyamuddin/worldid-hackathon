@@ -1,23 +1,21 @@
-from pydantic import BaseModel, EmailStr
-from typing import Optional
+from pydantic import BaseModel
+from typing import Optional, Dict
 from datetime import datetime
 
 
-class OrganizerCreate(BaseModel):
-    email: EmailStr
-    password: str
-    name: str
+class OrganizerRegister(BaseModel):
+    world_id_proof: Dict  # WorldID proof object
+    name: Optional[str] = None  # Optional organizer name
 
 
 class OrganizerLogin(BaseModel):
-    email: EmailStr
-    password: str
+    world_id_proof: Dict  # WorldID proof object
 
 
 class OrganizerResponse(BaseModel):
     id: int
-    email: str
-    name: str
+    world_id_hash: str
+    name: Optional[str]
     is_active: bool
     created_at: datetime
 

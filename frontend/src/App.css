@@ -1,8 +1,17 @@
 #root {
-  max-width: 1280px;
+  width: 100%;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /* Responsive padding */
+  padding: 0;
+  text-align: left;
+}
+
+/* Mobile-first responsive container */
+@media (min-width: 1280px) {
+  #root {
+    max-width: 1280px;
+  }
 }
 
 .logo {
@@ -34,7 +43,13 @@
 }
 
 .card {
-  padding: 2em;
+  padding: 1em;
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 2em;
+  }
 }
 
 .read-the-docs {

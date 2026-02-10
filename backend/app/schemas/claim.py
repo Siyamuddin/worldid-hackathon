@@ -6,6 +6,7 @@ from app.models.claim import ClaimStatus
 
 class ClaimRequest(BaseModel):
     world_id_proof: dict  # WorldID proof object
+    wallet_address: str  # Required for claiming rewards
 
 
 class ClaimResponse(BaseModel):

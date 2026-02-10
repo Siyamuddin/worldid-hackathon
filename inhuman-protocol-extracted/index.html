@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inhuman Protocol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #021612;
+            color: #00FFC2;
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            overflow: hidden;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 255, 194, 0.7), 0 0 20px rgba(0, 255, 194, 0.5);
+        }
+        .glow-box {
+            box-shadow: 0 0 15px rgba(0, 255, 194, 0.3);
+        }
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .scan-line {
+            background: linear-gradient(to bottom, transparent, #00FFC2, transparent);
+            height: 2px;
+            width: 100%;
+            position: absolute;
+            animation: scan 3s linear infinite;
+            opacity: 0.5;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
